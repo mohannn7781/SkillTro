@@ -1,0 +1,18 @@
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: skilltro
+      POSTGRES_USER: skilltro
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD:?Set DATABASE_PASSWORD before starting Postgres}
+    ports:
+      - "5432:5432"
+    volumes:
+      - skilltro-postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U skilltro -d skilltro"]
+      interval: 5s
+      timeout: 3s
+      retries: 15
+volumes:
+  skilltro-postgres:

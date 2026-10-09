@@ -1,0 +1,8 @@
+server:
+  port: ${SERVER_PORT:8080}
+spring:
+  profiles:
+    default: postgres
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
